@@ -2,15 +2,33 @@
 
 <h2>Event List</h2>
 
-<a asp-action="Create" class="btn btn-success">Add New Event</a>
+<div class="d-flex justify-content-between mb-3">
+    <a asp-action="Create" class="btn btn-success custom-btn">
+        <i class="bi bi-plus-lg"></i> Add New Event
+    </a>
 
+    <form asp-action="List" method="get" class="d-flex align-items-end">
+        <input type="text" name="search" value="@ViewData["Search"]" placeholder="Search events..."
+               class="form-control form-control-sm me-2 custom-search-input" />
+
+        <input type="text" id="startDate" name="startDate" value="@ViewData["StartDate"]"
+               placeholder="Start Date" class="form-control form-control-sm me-2 custom-date-input" />
+
+        <input type="text" id="endDate" name="endDate" value="@ViewData["EndDate"]"
+               placeholder="End Date" class="form-control form-control-sm me-2 custom-date-input" />
+
+        <button type="submit" class="btn btn-purple btn-sm custom-search-btn">Search</button>
+    </form>
+</div>
+<div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
 <table class="table table-striped mt-3">
-    <thead>
+    <thead class="table-light">
         <tr>
             <th>Title</th>
             <th>Description</th>
             <th>Date</th>
-            <th>Actions</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -19,13 +37,79 @@
             <tr>
                 <td>@item.Title</td>
                 <td>@item.Description</td>
-                <td>@item.Date.ToString("dd.MM.yyyy")</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                <td>@item.Date.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("en-US"))</td>
+                    <td class="text-center">
+                        <span class="badge @(item.Date < DateTime.Today ? "bg-secondary" : "bg-success")">
+                            @(item.Date < DateTime.Today ? "Passed" : "Upcoming")
+                        </span>
+                    </td>
+                <td class="d-flex gap-1">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm me-1"><i class="bi bi-eye"></i>Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm me-1"><i class="bi bi-pencil"></i>Edit</a>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            data-eventid="@item.Id" data-eventtitle="@item.Title">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                    
                 </td>
             </tr>
         }
     </tbody>
 </table>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="DeleteConfirmed" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete <strong id="eventTitle"></strong>?</p>
+                    <input type="hidden" id="eventId" name="id" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-arrow-left"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#startDate", {
+            dateFormat: "Y-m-d",
+            locale: "en",
+            allowInput: true,
+            minDate: "today"
+        });
+        flatpickr("#endDate", {
+            dateFormat: "Y-m-d",
+            locale: "en",
+            allowInput: true,
+            minDate: "today"
+        });
+
+        const deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const eventId = button.getAttribute('data-eventid');
+            const eventTitle = button.getAttribute('data-eventtitle');
+
+            // Form içindeki gizli input ve başlık alanını doldur
+            deleteModal.querySelector('#eventId').value = eventId;
+            deleteModal.querySelector('#eventTitle').textContent = eventTitle;
+        });
+    </script>
+      
+}

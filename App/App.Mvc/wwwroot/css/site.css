@@ -18,5 +18,78 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #f8f9fc; /* açýk gri arka plan */
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    color: #333;
 }
+
+footer {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+.alert {
+    margin-top: 1rem;
+}
+
+table {
+    background-color: #fff;
+    border-radius: 6px;
+}
+/*Navbar */
+.navbar {
+    background-color: #0d6efd; /* Bootstrap'in mavi tonu */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.table-responsive thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa; /* bootstrap-light table color */
+    z-index: 5;
+}
+
+/* Add New Event butonu */
+.custom-btn {
+    height: 40px; 
+    font-size: 1rem; 
+    padding: 0 16px; 
+    display: flex; /* Flex ile ortalama */
+    align-items: center; /* Dikey ortala */
+    justify-content: center; /* Yatay ortala */
+    gap: 5px;
+}
+
+.custom-search-input {
+    height: 35px;
+    width: 200px;
+}
+
+.custom-date-input {
+    height: 35px;
+    width: 130px;
+}
+
+.custom-search-btn {
+    height: 35px;
+    padding: 0 12px;
+}
+
+.custom-btn {
+    height: 35px;
+    font-size: 0.9rem;
+    padding: 0 16px;
+}
+
+.btn-purple {
+    background-color: #6f42c1;
+    color: white;
+}
+
+    .btn-purple:hover {
+        background-color: #5936a1;
+    }

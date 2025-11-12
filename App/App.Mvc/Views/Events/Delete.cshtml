@@ -1,0 +1,10 @@
+﻿@model App.Mvc.Models.EventModel
+
+<h2>Delete Event</h2>
+<p>Are you sure you want to delete <strong>@Model.Title</strong>?</p>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i>Delete</button>
+    <a asp-action="List" class="btn btn-secondary"><i class="bi bi-arrow-left"></i>Cancel</a>
+</form>
