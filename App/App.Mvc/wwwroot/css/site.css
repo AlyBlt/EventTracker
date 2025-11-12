@@ -1,25 +1,25 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     margin-bottom: 60px;
-    background-color: #f8f9fc; /* açýk gri arka plan */
+    background-color: #f8f9fc;
     font-family: "Segoe UI", Roboto, Arial, sans-serif;
     color: #333;
 }
@@ -40,30 +40,42 @@ footer {
 table {
     background-color: #fff;
     border-radius: 6px;
+    transition: 0.2s;
 }
-/*Navbar */
+
+    table tbody tr:hover {
+        background-color: #f1f3f5; /* Satýr hover efekti */
+    }
+
 .navbar {
-    background-color: #0d6efd; /* Bootstrap'in mavi tonu */
+    background-color: #0d6efd;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .table-responsive thead th {
     position: sticky;
     top: 0;
-    background-color: #f8f9fa; /* bootstrap-light table color */
+    background-color: #f8f9fa;
     z-index: 5;
 }
 
 /* Add New Event butonu */
 .custom-btn {
-    height: 40px; 
-    font-size: 1rem; 
-    padding: 0 16px; 
-    display: flex; /* Flex ile ortalama */
-    align-items: center; /* Dikey ortala */
-    justify-content: center; /* Yatay ortala */
+    height: 35px;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
+    transition: 0.2s;
 }
 
+    .custom-btn:hover {
+        filter: brightness(1.1);
+    }
+
+/* Search input ve button */
 .custom-search-input {
     height: 35px;
     width: 200px;
@@ -77,19 +89,48 @@ table {
 .custom-search-btn {
     height: 35px;
     padding: 0 12px;
-}
-
-.custom-btn {
-    height: 35px;
-    font-size: 0.9rem;
-    padding: 0 16px;
+    transition: 0.2s;
 }
 
 .btn-purple {
     background-color: #6f42c1;
     color: white;
+    transition: 0.2s;
 }
 
     .btn-purple:hover {
         background-color: #5936a1;
+        color: white; /* yazý rengini sabitle */
+        filter: brightness(1.05);
     }
+
+/* Card */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+.card-header i {
+    font-size: 1.5rem;
+}
+
+.card-body p {
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .card {
+        max-width: 90%;
+    }
+
+    .custom-search-input {
+        width: 150px;
+    }
+}
