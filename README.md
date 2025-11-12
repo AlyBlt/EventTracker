@@ -24,7 +24,7 @@ The goal of this project is to implement a simple event management system that a
 ---
 
 ## 🧩 **Project Structure**
-
+```
 EventTracker/
 │
 ├── Controllers/
@@ -41,6 +41,7 @@ EventTracker/
 │       └── Edit.cshtml
 │
 └── Program.cs
+```
 
 ---
 
