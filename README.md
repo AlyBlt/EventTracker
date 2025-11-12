@@ -28,17 +28,17 @@ The goal of this project is to implement a simple event management system that a
 EventTracker/
 │
 ├── Controllers/
-│ └── EventsController.cs
+│   └── EventsController.cs
 │
 ├── Models/
-│ └── EventModel.cs
+│   └── EventModel.cs
 │
 ├── Views/
-│ └── Events/
-│ ├── List.cshtml
-│ ├── Details.cshtml
-│ ├── Create.cshtml
-│ └── Edit.cshtml
+│   └── Events/
+│       ├── List.cshtml
+│       ├── Details.cshtml
+│       ├── Create.cshtml
+│       └── Edit.cshtml
 │
 └── Program.cs
 
@@ -49,7 +49,6 @@ EventTracker/
 1. Clone this repository:
    ```bash
    git clone https://github.com/AlyBlt/EventTracker.git
-   cd EventTracker
    ```
 2. Run the project using the command:
    ```bash
@@ -57,7 +56,8 @@ EventTracker/
    ```
 3. Open your browser and go to:  
 👉 [https://localhost:7082](https://localhost:7082)
-*Not: Konsolda belirtilen port numarası farklı olabilir.*
+
+*Note: The port number may be different on your machine.*
 
 ---
 
