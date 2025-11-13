@@ -3,6 +3,8 @@
 <h2>Edit Event</h2>
 
 <form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+
     <input type="hidden" asp-for="Id" />
     <div class="mb-3">
         <label asp-for="Title" class="form-label">Title</label>

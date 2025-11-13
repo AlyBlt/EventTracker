@@ -134,6 +134,7 @@ namespace App.Mvc.Controllers
 
         // Create new event (POST)
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(EventModel newEvent)
         {
             if (ModelState.IsValid)
@@ -156,6 +157,7 @@ namespace App.Mvc.Controllers
 
         //Edit event (POST)
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(EventModel updatedEvent)
         {
             var existing = eventList.FirstOrDefault(e => e.Id == updatedEvent.Id);
